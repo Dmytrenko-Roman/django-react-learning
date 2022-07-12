@@ -1,21 +1,26 @@
 import { Container } from 'react-bootstrap'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
 
-import HomeScreen from './screens/HomeScreen'
+import HomeRoute from './routers/HomeRoute'
+import CarRoute from './routers/CarRoute'
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Header />
       <main className='py-3'>
         <Container>
-          <HomeScreen />
+          <Routes>
+            <Route path='/' element={<HomeRoute />} exact />
+            <Route path='/car/:id' element={<CarRoute />} />
+          </Routes>
         </Container>
       </main>
       <Footer />
-    </div>
+    </Router>
   );
 }
 
