@@ -1,16 +1,16 @@
-import React from 'react'
+import React from 'react';
 
 function Star({ value, gt, lt }) {
   return (
     <i className={
-      value >= lt
-        ? 'fas fa-star'
-        : value >= gt
-          ? 'fas fa-star-half-alt'
-          : 'far fa-star'
-    }>
-    </i>
-  )
+            value >= lt
+              ? 'fas fa-star'
+              : value >= gt
+                ? 'fas fa-star-half-alt'
+                : 'far fa-star'
+        }
+    />
+  );
 }
 
-export default Star
+export default Star;

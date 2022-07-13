@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import Star from './Star'
+import Star from './Star';
 
 function Rating({ value, text }) {
   return (
-    <div className='rating'>
+    <div className="rating">
       <span>
         <Star value={value} lt={1} gt={0.5} />
         <Star value={value} lt={2} gt={1.5} />
@@ -14,7 +14,7 @@ function Rating({ value, text }) {
       </span>
       <span>{text && text}</span>
     </div>
-  )
+  );
 }
 
-export default Rating
+export default Rating;
