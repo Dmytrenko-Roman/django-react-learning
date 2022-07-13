@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from base.products import products
 
 
-class ProductViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+# class ProductViewSet(viewsets.ModelViewSet):
+#     queryset = User.objects.all()
     
-    def list(self, request):
-        return Response(products)
+#     def list(self, request):
+#         return Response(products)
