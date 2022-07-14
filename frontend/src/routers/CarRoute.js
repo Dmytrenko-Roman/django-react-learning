@@ -18,7 +18,7 @@ function CarRoute() {
 		}
 
 		fetchProduct();
-	}, [])
+	}, [id])
 
 	return (
 		<div>

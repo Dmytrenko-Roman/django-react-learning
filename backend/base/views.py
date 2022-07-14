@@ -1,11 +1,6 @@
-from django.contrib.auth.models import User
 from rest_framework import viewsets
-from rest_framework.response import Response
-from base.products import products
+from base.models import Car
 
 
 # class ProductViewSet(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-    
-#     def list(self, request):
-#         return Response(products)
+#     queryset = Car.objects.all()
