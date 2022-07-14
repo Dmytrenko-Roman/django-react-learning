@@ -9,11 +9,11 @@ import Rating from '../components/Rating';
 
 function CarRoute() {
 	const { id } = useParams();
-	const [product, setProduct] = useState([]);
+	const [car, setProduct] = useState([]);
 
 	useEffect(() => {
 		async function fetchProduct() {
-			const { data } = await axios.get(`http:://127.0.0.1:8000/api/products/${id}`);
+			const { data } = await axios.get(`http://127.0.0.1:8000/api/cars/${id}/`);
 			setProduct(data)
 		}
 
@@ -25,30 +25,30 @@ function CarRoute() {
 			<Link to="/" className="btn btn-light my-3">Go Back</Link>
 			<Row>
 				<Col md={6}>
-					<Image src={product.image} alt={product.name} fluid />
+					<Image src={car.image} alt={car.name} fluid />
 				</Col>
 
 				<Col md={3}>
 					<ListGroup variant="flush">
 						<ListGroup.Item>
-							<h3>{product.name}</h3>
+							<h3>{car.name}</h3>
 						</ListGroup.Item>
 
 						<ListGroup.Item>
-							<Rating value={product.rating} text={`${product.numReviews} reviews`} />
+							<Rating value={car.rating} text={`${car.num_reviews} reviews`} />
 						</ListGroup.Item>
 
 						<ListGroup.Item>
 							<strong>Price:</strong>
 							{' '}
 							$
-							{product.price}
+							{car.price}
 						</ListGroup.Item>
 
 						<ListGroup.Item>
 							<strong>Description:</strong>
 							{' '}
-							{product.description}
+							{car.description}
 						</ListGroup.Item>
 					</ListGroup>
 				</Col>
@@ -63,7 +63,7 @@ function CarRoute() {
 									</Col>
 									<Col>
 										$
-										{product.price}
+										{car.price}
 									</Col>
 								</Row>
 							</ListGroup.Item>
@@ -74,7 +74,7 @@ function CarRoute() {
 										Status:
 									</Col>
 									<Col>
-										{product.countInStock > 0 ? 'In stock' : 'Out of stock'}
+										{car.count_in_stock > 0 ? 'In stock' : 'Out of stock'}
 									</Col>
 								</Row>
 							</ListGroup.Item>
@@ -82,7 +82,7 @@ function CarRoute() {
 							<ListGroup.Item>
 								<Button
 									className="btn-block"
-									disabled={product.countInStock === 0}
+									disabled={car.count_in_stock === 0}
 									type="button"
 								>
 									Add to cart

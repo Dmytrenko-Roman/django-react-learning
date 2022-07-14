@@ -22,7 +22,7 @@ function Product({ product }) {
 					<div className="my-3">
 						<Rating
 							value={product.rating}
-							text={`${product.numReviews} reviews`}
+							text={`${product.num_reviews} reviews`}
 						/>
 					</div>
 				</Card.Text>

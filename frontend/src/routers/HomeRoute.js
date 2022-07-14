@@ -5,11 +5,11 @@ import axios from 'axios';
 import Product from '../components/Product';
 
 function HomeRoute() {
-	const [products, setProducts] = useState([]);
+	const [cars, setProducts] = useState([]);
 
 	useEffect(() => {
 		async function fetchProducts() {
-			const { data } = await axios.get(`http:://127.0.0.1:8000/api/products/`);
+			const { data } = await axios.get(`http://127.0.0.1:8000/api/cars/`);
 			setProducts(data);
 		}
 
@@ -20,7 +20,7 @@ function HomeRoute() {
 		<div>
 			<h1>Latest Cars</h1>
 			<Row>
-				{products.map((product) => (
+				{cars.map((product) => (
 					<Col key={product._id} sm={12} md={6} lg={4} xl={3}>
 						<Product product={product} />
 					</Col>
