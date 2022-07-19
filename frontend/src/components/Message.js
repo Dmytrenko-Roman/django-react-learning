@@ -1,12 +1,19 @@
-import React from 'react'
-import { Alert } from 'react-bootstrap'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Alert } from 'react-bootstrap';
 
 function Message({ variant, children }) {
     return (
         <Alert variant={variant}>
             {children}
         </Alert>
-    )
+    );
 }
 
-export default Message
+Message.propTypes = {
+    variant: PropTypes.string.isRequired,
+    children: PropTypes.string.isRequired,
+};
+
+
+export default Message;

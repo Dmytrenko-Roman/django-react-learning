@@ -1,39 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+
 import Rating from './Rating';
 
-function Car({ product: car }) {
-	return (
-		<Card className="my-3 p-3 rounded">
-			<Link to={`/car/${car._id}`}>
-				<Card.Img src={car.image} />
-			</Link>
+function Car({ car: car }) {
+    return (
+        <Card className="my-3 p-3 rounded">
+            <Link to={`/car/${car._id}`}>
+                <Card.Img src={car.image} />
+            </Link>
 
-			<Card.Body>
-				<Link to={`/car/${car._id}`}>
-					<Card.Title as="div">
-						<strong>{car.brand} {car.name}</strong>
-					</Card.Title>
-				</Link>
+            <Card.Body>
+                <Link to={`/car/${car._id}`}>
+                    <Card.Title as="div">
+                        <strong>{car.brand} {car.name}</strong>
+                    </Card.Title>
+                </Link>
 
-				<Card.Text as="div">
-					<div className="my-3">
-						<Rating
-							value={car.rating}
-							text={`${car.num_reviews} reviews`}
-						/>
-					</div>
-				</Card.Text>
+                <Card.Text as="div">
+                    <div className="my-3">
+                        <Rating
+                            value={car.rating}
+                            text={`${car.num_reviews} reviews`}
+                        />
+                    </div>
+                </Card.Text>
 
-				<Card.Text as="h3">
-					$
-					{car.price}
-				</Card.Text>
-			</Card.Body>
-		</Card>
-	);
+                <Card.Text as="h3">
+                    $
+                    {car.price}
+                </Card.Text>
+            </Card.Body>
+        </Card>
+    );
 }
+
+Car.propTypes = {
+    car: PropTypes.object.isRequired,
+};
 
 export default Car;

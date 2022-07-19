@@ -1,5 +1,5 @@
-import React from 'react'
-import { Spinner } from 'react-bootstrap'
+import React from 'react';
+import { Spinner } from 'react-bootstrap';
 
 function Loader() {
     return (
@@ -13,7 +13,7 @@ function Loader() {
                 display: 'block',
             }}
         />
-    )
+    );
 }
 
-export default Loader
+export default Loader;
