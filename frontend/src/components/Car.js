@@ -4,36 +4,36 @@ import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
 
-function Product({ product }) {
+function Car({ product: car }) {
 	return (
 		<Card className="my-3 p-3 rounded">
-			<Link to={`/car/${product._id}`}>
-				<Card.Img src={product.image} />
+			<Link to={`/car/${car._id}`}>
+				<Card.Img src={car.image} />
 			</Link>
 
 			<Card.Body>
-				<Link to={`/car/${product._id}`}>
+				<Link to={`/car/${car._id}`}>
 					<Card.Title as="div">
-						<strong>{product.name}</strong>
+						<strong>{car.brand} {car.name}</strong>
 					</Card.Title>
 				</Link>
 
 				<Card.Text as="div">
 					<div className="my-3">
 						<Rating
-							value={product.rating}
-							text={`${product.num_reviews} reviews`}
+							value={car.rating}
+							text={`${car.num_reviews} reviews`}
 						/>
 					</div>
 				</Card.Text>
 
 				<Card.Text as="h3">
 					$
-					{product.price}
+					{car.price}
 				</Card.Text>
 			</Card.Body>
 		</Card>
 	);
 }
 
-export default Product;
+export default Car;

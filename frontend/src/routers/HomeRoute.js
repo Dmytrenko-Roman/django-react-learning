@@ -1,31 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap';
-import axios from 'axios';
 
-import Product from '../components/Product';
+import Car from '../components/Car';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+
+import { listCars } from '../actions/carActions'
 
 function HomeRoute() {
-	const [cars, setProducts] = useState([]);
+	const dispatch = useDispatch();
+	const carList = useSelector(state => state.carList);
+	const { error, loading, cars } = carList;
 
 	useEffect(() => {
-		async function fetchProducts() {
-			const { data } = await axios.get(`http://127.0.0.1:8000/api/cars/`);
-			setProducts(data);
-		}
-
-		fetchProducts();
-	}, [])
+		dispatch(listCars());
+	}, [dispatch])
 
 	return (
 		<div>
 			<h1>Latest Cars</h1>
-			<Row>
-				{cars.map((product) => (
-					<Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-						<Product product={product} />
-					</Col>
-				))}
-			</Row>
+			{
+				loading ? <Loader />
+					: error ? <Message variant='danger'>{error}</Message>
+						:
+						<Row>
+							{cars.map((car) => (
+								<Col key={car._id} sm={12} md={6} lg={4} xl={3}>
+									<Car product={car} />
+								</Col>
+							))}
+						</Row>
+			}
 		</div>
 	);
 }
