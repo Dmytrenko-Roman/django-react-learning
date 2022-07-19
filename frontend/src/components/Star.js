@@ -15,7 +15,7 @@ function Star({ value, gt, lt }) {
 }
 
 Star.propTypes = {
-    value: PropTypes.number.isRequired,
+    value: PropTypes.string,
     gt: PropTypes.number.isRequired,
     lt: PropTypes.number.isRequired,
 };

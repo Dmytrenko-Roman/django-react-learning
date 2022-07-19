@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
 
-function Car({ car: car }) {
+function Car({ product: car }) {
     return (
         <Card className="my-3 p-3 rounded">
             <Link to={`/car/${car._id}`}>
@@ -39,7 +39,7 @@ function Car({ car: car }) {
 }
 
 Car.propTypes = {
-    car: PropTypes.object.isRequired,
+    product: PropTypes.object,
 };
 
 export default Car;

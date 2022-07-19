@@ -19,7 +19,7 @@ function Rating({ value, text }) {
 }
 
 Rating.propTypes = {
-    value: PropTypes.number.isRequired,
+    value: PropTypes.string,
     text: PropTypes.string.isRequired,
 };
 
