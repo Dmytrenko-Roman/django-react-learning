@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 
 import HomeRoute from './routers/HomeRoute';
 import CarRoute from './routers/CarRoute';
+import CartRoute from './routers/CartRoute';
 
 function App() {
     return (
@@ -16,6 +17,8 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomeRoute />} exact />
                         <Route path="/car/:id" element={<CarRoute />} />
+                        <Route path="/cart" element={<CartRoute />} />
+                        <Route path="/cart/:id" element={<CartRoute />} />
                     </Routes>
                 </Container>
             </main>

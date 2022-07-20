@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
-    Row, Col, Image, ListGroup, Button, Card,
+    Row, Col, Image, ListGroup, Button, Card, Form
 } from 'react-bootstrap';
 
 import Rating from '../components/Rating';
@@ -11,7 +11,9 @@ import Message from '../components/Message';
 import { retrieveCarDetail } from '../actions/carActions';
 
 function CarRoute() {
+    const [qty, setQty] = useState(1);
     const { id } = useParams();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const carDetail = useSelector(state => state.carDetail);
     const { loading, error, car } = carDetail;
@@ -19,6 +21,10 @@ function CarRoute() {
     useEffect(() => {
         dispatch(retrieveCarDetail(id));
     }, [dispatch, id]);
+
+    const addToCartHandler = () => {
+        navigate(`/cart/${id}?qty=${qty}`);
+    };
 
     return (
         <div>
@@ -46,7 +52,7 @@ function CarRoute() {
                                     <ListGroup.Item>
                                         <strong>Price:</strong>
                                         {' '}
-										$
+                                        $
                                         {car.price}
                                     </ListGroup.Item>
 
@@ -64,10 +70,10 @@ function CarRoute() {
                                         <ListGroup.Item>
                                             <Row>
                                                 <Col>
-													Price:
+                                                    Price:
                                                 </Col>
                                                 <Col>
-													$
+                                                    $
                                                     {car.price}
                                                 </Col>
                                             </Row>
@@ -76,21 +82,47 @@ function CarRoute() {
                                         <ListGroup.Item>
                                             <Row>
                                                 <Col>
-													Status:
+                                                    Status:
                                                 </Col>
                                                 <Col>
                                                     {car.count_in_stock > 0 ? 'In stock' : 'Out of stock'}
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>
+                                        {
+                                            car.count_in_stock > 0 && (
+                                                <ListGroup.Item>
+                                                    <Row>
+                                                        <Col>Qty</Col>
+                                                        <Col xs="auto" className="my-1">
+                                                            <Form.Control
+                                                                as="select"
+                                                                value={qty}
+                                                                onChange={(e) => setQty(e.target.value)}
+                                                            >
+                                                                {
+                                                                    [...Array(car.count_in_stock).keys()].map((x) => (
+                                                                        <option key={x + 1} value={x + 1}>
+                                                                            {x + 1}
+                                                                        </option>
+                                                                    ))
+                                                                }
+                                                            </Form.Control>
+                                                        </Col>
+                                                    </Row>
+
+                                                </ListGroup.Item>
+                                            )
+                                        }
 
                                         <ListGroup.Item>
                                             <Button
+                                                onClick={addToCartHandler}
                                                 className="btn-block"
                                                 disabled={car.count_in_stock === 0}
                                                 type="button"
                                             >
-												Add to cart
+                                                Add to cart
                                             </Button>
                                         </ListGroup.Item>
                                     </ListGroup>
@@ -98,7 +130,7 @@ function CarRoute() {
                             </Col>
                         </Row>
             }
-        </div>
+        </div >
     );
 }
 
