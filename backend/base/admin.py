@@ -1,6 +1,13 @@
 from django.contrib import admin
-from base.models import *
 
+from base.models import (
+    CustomUser,
+    Car,
+    Review,
+    Order,
+    OrderItem,
+    ShippingAddress,
+)
 
 admin.site.register(CustomUser)
 admin.site.register(Car)
