@@ -5,6 +5,7 @@ from base import views
 
 router = routers.DefaultRouter()
 router.register(r"cars", views.CarViewSet, basename="car")
+router.register(r"users", views.UserViewSet, basename="user")
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -16,4 +17,5 @@ urlpatterns = [
         views.CustomTokenObtainPairView.as_view(),
         name="token_obtain_pair",
     ),
+    # path("users/register/", views.RegisterView.as_view(), name="register"),
 ]
