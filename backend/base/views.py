@@ -1,12 +1,12 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from base.models import Car, CustomUser
-from base.permissions import CreateOnly
+from base.permissions import AllowCreate
 from base.serializers import (CarSerializer,  # RegisterSerializer,
                               CustomTokenObtainPairSerializer, UserSerializer,
                               UserSerializerWithToken)
@@ -30,7 +30,7 @@ class CarViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAdminUser | CreateOnly,)
+    permission_classes = (IsAdminUser | AllowCreate,)
     http_method_names = ("get", "post")
 
     def create(self, request, *args, **kwargs):
